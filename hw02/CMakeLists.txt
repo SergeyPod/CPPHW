@@ -5,7 +5,7 @@ cmake_minimum_required (VERSION 3.8)
 
 set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
-project("ip_filter" VERSION ${PROJECT_VESRION})
+project("ip_filter" VERSION ${PROJECT_VERSION})
 
 
 
@@ -35,3 +35,30 @@ set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 set(CPACK_PACKAGE_CONTACT example@example.com)
 
 include(CPack)
+
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/v1.13.0.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+cmake_minimum_required(VERSION 3.14)
+
+enable_testing()
+
+add_executable(
+  ip_filter_test
+  "ip_filter_test.cpp"
+)
+target_link_libraries(
+  ip_filter_test
+  gtest_main
+  gmock_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(ip_filter_test)
+

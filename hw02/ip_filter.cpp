@@ -19,7 +19,7 @@
 using namespace std;
 
 
-auto split(const auto& str, auto d)
+auto split(const std::string& str, char d)
 {
     std::vector<std::string> r;
     auto start = 0;
@@ -36,7 +36,7 @@ auto split(const auto& str, auto d)
 }
 
 void print_vec(const std::vector<size_t> &ip) {
-    for (std::vector<size_t>::const_iterator ip_part = ip.cbegin(); ip_part != ip.cend(); ++ip_part)
+    for (auto ip_part = ip.cbegin(); ip_part != ip.cend(); ++ip_part)
     {
         if (ip_part != ip.cbegin())
         {
@@ -56,8 +56,11 @@ int main(int argc, char const* argv[])
 
         for (std::string line; std::getline(std::cin, line);)
         {
-            std::vector<std::string> v = split(line, '\t');
-            std::vector<std::string> v_ip = split(v.at(0), '.');
+            auto v = split(line, '\t');
+            auto v_ip = split(v.at(0), '.');
+            if (v_ip.size() != 4) {
+                throw std::invalid_argument("Supplied line does not seem to contain a valid IP:" + line);
+            }
             std::vector<size_t> v_ip_transf;
 
             std::transform(v_ip.begin(), v_ip.end(), std::back_inserter(v_ip_transf),
@@ -66,7 +69,7 @@ int main(int argc, char const* argv[])
         }
 
         std::sort(ip_pool.begin(), ip_pool.end(), 
-            [](const std::vector<size_t>& a, const std::vector<size_t>& b) {
+            [](const auto& a, const auto& b) {
                 return std::lexicographical_compare(b.begin(), b.end(), a.begin(), a.end());
             });
 
@@ -75,7 +78,7 @@ int main(int argc, char const* argv[])
         std::vector<std::vector<size_t>> condition_3;
 
 
-        for (std::vector<std::vector<size_t>>::const_iterator ip = ip_pool.cbegin(); ip != ip_pool.cend(); ++ip)
+        for (auto ip = ip_pool.cbegin(); ip != ip_pool.cend(); ++ip)
         {
             if (((*ip)[0] == 1) && (shift_cond_1 == -1)) {
                 shift_cond_1 = ip - ip_pool.cbegin();
@@ -101,7 +104,7 @@ int main(int argc, char const* argv[])
         // 1.29.168.152
         // 1.1.234.8
 
-        for (std::vector<std::vector<size_t>>::const_iterator ip = ip_pool.cbegin() + shift_cond_1; ip != ip_pool.cend(); ++ip)
+        for (auto ip = ip_pool.cbegin() + shift_cond_1; ip != ip_pool.cend(); ++ip)
         {
             print_vec(*ip);
         }
@@ -112,7 +115,7 @@ int main(int argc, char const* argv[])
         // 1.29.168.152
         // 1.1.234.8
 
-        for (std::vector<std::vector<size_t>>::const_iterator ip = condition_2.cbegin(); ip != condition_2.cend(); ++ip)
+        for (auto ip = condition_2.cbegin(); ip != condition_2.cend(); ++ip)
         {
             print_vec(*ip);
         }
@@ -122,7 +125,7 @@ int main(int argc, char const* argv[])
         // 46.70.113.73
         // 46.70.29.76
 
-        for (std::vector<std::vector<size_t>>::const_iterator ip = condition_3.cbegin(); ip != condition_3.cend(); ++ip)
+        for (auto ip = condition_3.cbegin(); ip != condition_3.cend(); ++ip)
         {
             print_vec(*ip);
         }
