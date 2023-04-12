@@ -7,8 +7,6 @@ set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
 project("ip_filter" VERSION ${PROJECT_VERSION})
 
-
-
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
   cmake_policy(SET CMP0141 NEW)
