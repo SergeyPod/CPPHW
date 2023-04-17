@@ -1,0 +1,11 @@
+Running main() from C:\wrk\study\hw02\out\build\x64-debug\_deps\googletest-src\googletest\src\gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MagicTest
+[ RUN      ] MagicTest.CharacterVectorContains
+[       OK ] MagicTest.CharacterVectorContains (0 ms)
+[----------] 1 test from MagicTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
