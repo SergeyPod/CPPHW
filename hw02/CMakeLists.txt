@@ -50,7 +50,7 @@ enable_testing()
 add_executable(
   ip_filter_test
   "ip_filter_test.cpp"
-)
+ )
 target_link_libraries(
   ip_filter_test
   gtest_main

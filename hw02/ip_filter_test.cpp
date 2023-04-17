@@ -1,9 +1,20 @@
-#include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "ip_filter.cpp"
+#include <gtest/gtest.h>
+#include "ip_filter_utils.cpp"
 
-TEST(SplitTest, HandlesZeroInput) {
-	auto computed = split("222.173.235.246", '.');
-	ASSERT_THAT(computed, ElementsAre(222,173,235,246));
-	//EXPECT_EQ(1, 1);
+using testing::Contains;
+using testing::ElementsAre;
+using testing::Pointee;
+
+
+bool operator==(const string& a, const string& b)
+{
+    return a == b;
+}
+
+
+TEST(MagicTest, CharacterVectorContains)
+{
+    auto computed = split("222.173.235.246", '.');
+    ASSERT_THAT(computed, ElementsAre("222", "173", "235", "246"));
 }
