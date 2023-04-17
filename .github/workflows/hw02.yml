@@ -39,3 +39,5 @@ jobs:
           asset_path: ./hw02/ip_filter-0.0.${{ github.run_number }}-Linux.deb
           asset_name: ip_filter-0.0.${{ github.run_number }}-Linux.deb
           asset_content_type: application/vnd.debian.binary-package
+          allowUpdates: true
+          
