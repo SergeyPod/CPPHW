@@ -3,7 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-set(PATCH_VERSION 3.0)
+#set(PATCH_VERSION 3.0)
 
 set(PROJECT_VERSION 0.0.${PATCH_VERSION})
 
